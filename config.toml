@@ -1,0 +1,8 @@
+# Config file for DGLAB-CS2
+
+debug = false
+
+[dglab]
+base_strength = 20
+strength_per_hp = 0.2
+keep_strength_while_not_injured = true
