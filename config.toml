@@ -6,3 +6,4 @@ debug = false
 base_strength = 20
 strength_per_hp = 0.2
 keep_strength_while_not_injured = true
+burning_multiplier = 0.2 # 20% more strength if burning

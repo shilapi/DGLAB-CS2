@@ -1,12 +1,13 @@
 class Player:
     def __init__(self):
-        self.steamid = ''
-        self.name = ''
+        self.steamid = ""
+        self.name = ""
         self.observer_slot = -1
-        self.activity = ''
+        self.activity = ""
         self.state = State()
-        self.weapons = {}   
+        self.weapons = {}
         self.match_stats = MatchStats()
+
 
 class State:
     def __init__(self):
@@ -21,6 +22,7 @@ class State:
         self.round_killhs = 0
         self.equip_value = 0
 
+
 class MatchStats:
     def __init__(self):
         self.kills = 0
@@ -28,4 +30,3 @@ class MatchStats:
         self.deaths = 0
         self.mvps = 0
         self.score = 0
-
