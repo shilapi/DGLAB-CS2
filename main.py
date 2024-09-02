@@ -110,11 +110,9 @@ async def fetch_data():
         burning = server.gamestatemanager.gamestate.player.state.burning
         hp.insert(0, server.gamestatemanager.gamestate.player.state.health)
         hp.pop()
-        strength_offset = int(
-            (100 - hp[0])
-            * config["dglab"]["strength_per_hp"]
-            * (1 + (config["dglab"]["burning_multiplier"] * (burning / 255)))
-        )
+        burning_offset = 1 + (config["dglab"]["burning_multiplier"] * (burning / 255))
+        hp_offset = (100 - hp[0]) * config["dglab"]["strength_per_hp"]
+        strength_offset = int(hp_offset * burning_offset)
         if hp[0] == 100 and not config["dglab"]["keep_strength_while_not_injured"]:
             await dglab_instance.set_strength_sync(0, 0)
         elif config["dglab"]["keep_strength_while_not_injured"]:
@@ -126,6 +124,10 @@ async def fetch_data():
         if hp[0] > hp[1]:
             logging.info(
                 f"You're healed! Current HP {hp[0]}. Setting strength to {BASE_STRENGTH + strength_offset}"
+            )
+        if burning > 0:
+            logging.info(
+                f"Burning! Burning strength: {burning}. Setting strength with offset {burning_offset}"
             )
         # print(hp)
 
