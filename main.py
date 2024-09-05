@@ -115,7 +115,7 @@ async def fetch_data():
         strength_offset = int(hp_offset * burning_offset)
         if hp[0] == 100 and not config["dglab"]["keep_strength_while_not_injured"]:
             await dglab_instance.set_strength_sync(0, 0)
-        elif config["dglab"]["keep_strength_while_not_injured"]:
+        elif hp[0] == 100 and config["dglab"]["keep_strength_while_not_injured"]:
             await dglab_instance.set_strength_sync(BASE_STRENGTH + strength_offset, 0)
         if hp[0] < hp[1]:
             logging.info(
